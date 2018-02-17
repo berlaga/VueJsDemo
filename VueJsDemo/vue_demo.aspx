@@ -17,6 +17,12 @@
 
     <script src="Scripts/vue.js"></script>
 
+    <style>
+        .ui-datepicker{
+          font-size:.7em;
+        }
+    </style>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -27,10 +33,12 @@
                     test
                 </div>
                 <div id="app" class="col-3">
-                  <date-picker @update-date="updateDate" el-id="abc" v-bind:somedate="date" date-format="yy-mm-dd">
+                  <date-picker @update-date="updateDate" el-id="abc" v-bind:alldays="checked" v-bind:somedate="date" date-format="yy-mm-dd">
                   </date-picker>
                     <p>{{ date }}</p>    
                     <button type="button" v-on:click="setDate">Set date</button>
+                    <input type="checkbox" v-model="checked" value="Other month days" />
+                    <p>{{ checked }}</p>    
 
                 </div>
 
@@ -42,5 +50,11 @@
 </body>
 
     <script src="apps/components/date-picker/date-picker.js"></script>
+
+    <script type="text/javascript">
+
+        //vm.setDate(new Date('2018-2-22'));
+
+    </script>
 
 </html>

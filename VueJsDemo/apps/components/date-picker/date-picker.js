@@ -5,7 +5,7 @@ Vue.component('date-picker', {
 
     template: "<input />",
 
-    props: ['dateFormat', 'elId','somedate'],
+    props: ['dateFormat', 'elId', 'somedate','alldays'],
 
     data()
     {
@@ -21,7 +21,16 @@ Vue.component('date-picker', {
             console.log(newVal);
 
             $(this.$el).datepicker("setDate", newVal);
+        },
+
+        alldays: function (newVal, oldVal)
+        {
+            console.log(oldVal);
+            console.log(newVal);
+
+            $(this.$el).datepicker("option", "showOtherMonths", newVal);
         }
+
 
     },
     mounted: function ()
@@ -38,8 +47,6 @@ Vue.component('date-picker', {
             }
         });
 
-        self.id = this._uid + 1;
-
         //bus.$on('date-changed', function (date)
         //{
         //    console.log(date);
@@ -55,13 +62,14 @@ Vue.component('date-picker', {
     }
 });
 
-new Vue({
+var vm = new Vue({
 
     el: '#app',
 
     data: {
 
-        date: null
+        date: null,
+        checked: false
     },
 
     methods: {
@@ -72,9 +80,14 @@ new Vue({
         },
         setDate: function (event)
         {
-            this.date = new Date("2018-02-11");
+            if (!event.type)
+                this.date = new Date(event);
+            else
+                this.date = new Date("2018-2-1");
+
             //bus.$emit('date-changed', this.date);
         }
+
     }
 });
 
