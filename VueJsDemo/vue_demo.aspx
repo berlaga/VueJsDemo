@@ -18,8 +18,8 @@
     <script src="Scripts/vue.js"></script>
 
     <style>
-        .ui-datepicker{
-          font-size:.7em;
+        .ui-datepicker {
+            font-size: .7em;
         }
     </style>
 
@@ -38,9 +38,18 @@
                     <p>{{ date }}</p>    
                     <button type="button" v-on:click="setDate">Set date</button>
                     <input type="checkbox" v-model="checked" value="Other month days" />
-                    <p>{{ checked }}</p>    
+                    <p>{{ checked }}</p> 
+                    
+
+                        <div >
+
+                          <auto-complete el-id="xxv" service-url="/service/getdata/3" >
+                          </auto-complete>
+
+                        </div>
 
                 </div>
+
 
             </div>
 
@@ -48,6 +57,8 @@
     </form>
 
 </body>
+
+    <script src="apps/components/autocomplete/auto.js"></script>
 
     <script src="apps/components/date-picker/date-picker.js"></script>
 
