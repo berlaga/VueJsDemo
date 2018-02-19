@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Collections;
+using Newtonsoft.Json.Linq;
 
 namespace VueJsDemo.Controllers
 {
@@ -11,6 +13,7 @@ namespace VueJsDemo.Controllers
     {
         // GET: api/search
         [HttpGet]
+        [Route("api/autocomplete/searchState")]
         public IHttpActionResult search(string term)
         {
             List<string> listStates = new List<string>() {"Alaska",
@@ -74,5 +77,21 @@ namespace VueJsDemo.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("api/autocomplete/searchProv")]
+        public IHttpActionResult searchProv(string term)
+        {
+            var list = JToken.Parse("[ { name: 'Alberta', abbreviation: 'AB' }, { name: 'British Columbia', abbreviation: 'BC' }, { name: 'Manitoba', abbreviation: 'MB' }, { name: 'New Brunswick', abbreviation: 'NB' }, { name: 'Newfoundland and Labrador', abbreviation: 'NL' }, { name: 'Northwest Territories', abbreviation: 'NT' }, { name: 'Nova Scotia', abbreviation: 'NS' }, { name: 'Nunavut', abbreviation: 'NU' }, { name: 'Ontario', abbreviation: 'ON' }, { name: 'Prince Edward Island', abbreviation: 'PE' }, { name: 'Quebec', abbreviation: 'QC' }, { name: 'Saskatchewan', abbreviation: 'SK' }, { name: 'Yukon Territory', abbreviation: 'YT' } ]");
+
+            IDictionary<string, string> dic = list.ToDictionary(x=> x["abbreviation"].ToString(), x=> x["name"].ToString());
+
+            var result = dic.Where(x => x.Value.Contains(term)).Select(p => new { label = p.Value, value = p.Key }).ToList();
+
+            return Ok(result);
+        }
+
+
     }
+
+
 }
