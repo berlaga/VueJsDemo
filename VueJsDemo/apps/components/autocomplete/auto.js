@@ -4,7 +4,7 @@ Vue.component('auto-complete', {
 
     template: "<input />",
 
-    props: ['elId', 'serviceUrl'],
+    props: ['elId', 'serviceUrl','selectedItem'],
 
     data()
     {
@@ -33,17 +33,16 @@ Vue.component('auto-complete', {
             source: function (request, response)
             {
                 $.ajax({
-                    url: this.serviceUrl,
+                    url: this.serviceUrl + request.term,
                     type: 'GET',
                     cache: false,
                     data: request,
                     dataType: 'json',
                     success: function (data)
                     {
-                        response($.map(data, function (item)
-                        {
-                            return { value: item.value, label: item.label }
-                        }))
+                        response($.map(data, function (item) {
+                            return { value: item.value, label: item.label };
+                        }));
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown)
                     {
@@ -69,6 +68,8 @@ Vue.component('auto-complete', {
 
                 event.preventDefault();
                 $(this).val(ui.item.label);
+
+                self.$emit('selection-changed', { text: ui.item.label, value: 1, from: self.elId } );
 
                 //save selected user
                 //notificationsModel.selectedUser(ui.item);

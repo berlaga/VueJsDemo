@@ -43,10 +43,22 @@
 
                         <div >
 
-                          <auto-complete el-id="xxv" service-url="/service/getdata/3" >
+                          <auto-complete el-id="autoCompleteSt1" service-url="/api/autocomplete/search/?term=" @selection-changed="autocompletedOnSelectionChanged" >
                           </auto-complete>
 
+                            <p>{{ selectedState.from == 'autoCompleteSt1' ? selectedState : '' }}</p> 
+
                         </div>
+
+                        <div >
+
+                          <auto-complete el-id="autoCompleteSt2" service-url="/api/autocomplete/search/?term=" @selection-changed="autocompletedOnSelectionChanged" >
+                          </auto-complete>
+
+                            <p>{{ selectedState.from == 'autoCompleteSt2' ? selectedState : '' }}</p> 
+
+                        </div>
+
 
                 </div>
 

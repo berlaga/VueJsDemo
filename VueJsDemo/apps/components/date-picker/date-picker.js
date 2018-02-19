@@ -69,7 +69,9 @@ var vm = new Vue({
     data: {
 
         date: null,
-        checked: false
+        checked: false,
+        selectedState: ""
+
     },
 
     methods: {
@@ -77,6 +79,10 @@ var vm = new Vue({
         updateDate: function (date)
         {
             this.date = date;
+        },
+        autocompletedOnSelectionChanged(selection) {
+            console.log(selection);
+            this.selectedState = selection;
         },
         setDate: function (event)
         {
