@@ -5,14 +5,15 @@ Vue.component('date-picker', {
 
     template: "<input />",
 
-    props: ['dateFormat', 'elId', 'somedate','alldays'],
+    props: ['dateFormat', 'elId', 'somedate', 'alldays'],
 
-    data()
-    {
+    data: function() {
         return {
             id: null
         }
     }, 
+
+
     watch:
     {
         somedate: function (newVal, oldVal)
@@ -80,7 +81,7 @@ var vm = new Vue({
         {
             this.date = date;
         },
-        autocompletedOnSelectionChanged(selection) {
+        autocompletedOnSelectionChanged: function(selection) {
             console.log(selection);
             this.selectedState = selection;
         },

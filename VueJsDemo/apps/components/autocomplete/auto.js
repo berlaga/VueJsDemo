@@ -6,7 +6,7 @@ Vue.component('auto-complete', {
 
     props: ['elId', 'serviceUrl','selectedItem'],
 
-    data()
+    data: function()
     {
         return {
             url: null
