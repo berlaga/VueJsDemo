@@ -22,12 +22,15 @@
         .ui-datepicker {
             font-size: .7em;
         }
+
+        .ui-widget.ui-widget-content.ui-autocomplete 
+        {
+            z-index: 1000;
+        }
+
     </style>
 
     <script type="text/javascript">
-
-        //._m = require('moment');
-
 
         $(document).ready(function () {
 
