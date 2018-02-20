@@ -10,18 +10,32 @@
     <link href="Content/Site.css" rel="stylesheet" />
     <link href="Content/themes/base/all.css" rel="stylesheet" />
 
-
     <script src="Scripts/jquery-3.3.1.js"></script>
     <script src="Scripts/jquery-ui-1.12.1.js"></script>
     <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/moment.js"></script>
 
     <script src="Scripts/vue.js"></script>
+
 
     <style>
         .ui-datepicker {
             font-size: .7em;
         }
     </style>
+
+    <script type="text/javascript">
+
+        //._m = require('moment');
+
+
+        $(document).ready(function () {
+
+
+        });
+
+
+    </script>
 
 </head>
 <body>
@@ -33,6 +47,7 @@
                     test
                 </div>
                 <div id="app" class="col-3">
+
                   <date-picker @update-date="updateDate" el-id="abc" v-bind:alldays="checked" v-bind:somedate="date" date-format="yy-mm-dd">
                   </date-picker>
                     <p>{{ date }}</p>    
@@ -58,6 +73,17 @@
                             <p>{{ selectedState.from == 'autoCompleteSt2' ? selectedState : '' }}</p> 
 
                         </div>
+                    
+                    
+                    
+                    <div>
+
+                    <button type="button" v-on:click="openDialog">Open dialog</button>
+
+                          <ui-dialog @dialog-closed="onDialogClosed" el-id="d1" v-bind:open="dialogOpened"  >
+                          </ui-dialog>
+
+                    </div>
 
 
                 </div>
@@ -70,9 +96,10 @@
 
 </body>
 
+    <script src="apps/components/dialog/dialog.js"></script>
     <script src="apps/components/autocomplete/auto.js"></script>
-
     <script src="apps/components/date-picker/date-picker.js"></script>
+    <script src="apps/components/vue_app.js"></script>
 
     <script type="text/javascript">
 

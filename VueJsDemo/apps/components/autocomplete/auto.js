@@ -4,7 +4,7 @@ Vue.component('auto-complete', {
 
     template: "<input />",
 
-    props: ['elId', 'serviceUrl','selectedItem'],
+    props: ['elId', 'serviceUrl'],
 
     data: function()
     {
